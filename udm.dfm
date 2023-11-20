@@ -1,0 +1,63 @@
+object dm: Tdm
+  OldCreateOrder = False
+  Left = 192
+  Top = 121
+  Height = 488
+  Width = 721
+  object ADOConnection1: TADOConnection
+    Connected = True
+    ConnectionString = 
+      'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=database.mdb;Persis' +
+      't Security Info=False'
+    LoginPrompt = False
+    Mode = cmShareDenyNone
+    Provider = 'Microsoft.Jet.OLEDB.4.0'
+    Left = 104
+    Top = 48
+  end
+  object ADOQuery1: TADOQuery
+    Active = True
+    Connection = ADOConnection1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select*from obat;')
+    Left = 224
+    Top = 120
+  end
+  object DataSource1: TDataSource
+    DataSet = ADOQuery1
+    Left = 224
+    Top = 192
+  end
+  object ADODetail: TADOQuery
+    Active = True
+    Connection = ADOConnection1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select*from obat;')
+    Left = 336
+    Top = 120
+  end
+  object DataDetail: TDataSource
+    DataSet = ADODetail
+    Left = 336
+    Top = 192
+  end
+  object adosup: TADOQuery
+    Active = True
+    Connection = ADOConnection1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select*from supplier;')
+    Left = 448
+    Top = 120
+  end
+  object DataSource2: TDataSource
+    DataSet = adosup
+    Left = 448
+    Top = 192
+  end
+end
