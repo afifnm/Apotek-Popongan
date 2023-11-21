@@ -1,9 +1,9 @@
 object fpembelian: Tfpembelian
-  Left = 412
-  Top = 233
+  Left = 440
+  Top = 249
   BorderStyle = bsNone
   Caption = 'Pembelian Stok Obat'
-  ClientHeight = 615
+  ClientHeight = 622
   ClientWidth = 1084
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -20,7 +20,7 @@ object fpembelian: Tfpembelian
     Left = 0
     Top = 0
     Width = 1084
-    Height = 615
+    Height = 622
     Align = alClient
     Picture.Data = {
       0A544A504547496D61676576220100FFD8FFE119AB4578696600004D4D002A00
@@ -2570,7 +2570,7 @@ object fpembelian: Tfpembelian
         Expanded = False
         FieldName = 'lokasi'
         Title.Alignment = taCenter
-        Title.Caption = 'Lokasi'
+        Title.Caption = 'Expired'
         Width = 71
         Visible = True
       end
@@ -2632,21 +2632,6 @@ object fpembelian: Tfpembelian
     TabOrder = 2
     OnClick = BitBtn3Click
   end
-  object Edit1: TEdit
-    Left = 168
-    Top = 344
-    Width = 153
-    Height = 28
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -16
-    Font.Name = 'Arial Narrow'
-    Font.Style = []
-    ParentFont = False
-    TabOrder = 3
-    Text = 'Edit1'
-    OnKeyPress = Edit1KeyPress
-  end
   object Edit2: TEdit
     Left = 168
     Top = 376
@@ -2658,7 +2643,7 @@ object fpembelian: Tfpembelian
     Font.Name = 'Arial Narrow'
     Font.Style = []
     ParentFont = False
-    TabOrder = 4
+    TabOrder = 3
     Text = '0'
     OnChange = Edit2Change
     OnKeyPress = Edit2KeyPress
@@ -2676,7 +2661,7 @@ object fpembelian: Tfpembelian
     Font.Name = 'Arial Narrow'
     Font.Style = []
     ParentFont = False
-    TabOrder = 5
+    TabOrder = 4
     Text = 'Edit1'
     OnChange = Edit7Change
   end
@@ -2686,6 +2671,16 @@ object fpembelian: Tfpembelian
     Width = 16
     Height = 28
     Associate = Edit2
+    TabOrder = 5
+  end
+  object edit1: TComboBox
+    Left = 168
+    Top = 336
+    Width = 145
+    Height = 28
+    ItemHeight = 20
+    Sorted = True
     TabOrder = 6
+    Text = 'pilih supplier'
   end
 end

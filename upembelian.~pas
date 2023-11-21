@@ -4,7 +4,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ComCtrls, StdCtrls, Buttons, Grids, DBGrids, jpeg, ExtCtrls;
+  Dialogs, ComCtrls, StdCtrls, Buttons, Grids, DBGrids, jpeg, ExtCtrls,
+  DBCtrls;
 
 type
   Tfpembelian = class(TForm)
@@ -12,7 +13,6 @@ type
     DBGrid1: TDBGrid;
     BitBtn1: TBitBtn;
     BitBtn3: TBitBtn;
-    Edit1: TEdit;
     Label2: TLabel;
     Label3: TLabel;
     lbiaya: TLabel;
@@ -29,6 +29,7 @@ type
     Label10: TLabel;
     Label11: TLabel;
     ltagihan: TLabel;
+    edit1: TComboBox;
     procedure ree;
     procedure BitBtn3Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -66,7 +67,6 @@ begin
   bitbtn3.Caption := '&Keluar';
   bitbtn1.Enabled := false;
   bitbtn3.Enabled := true;
-  edit1.Clear;
   edit2.Clear;
   edit1.Visible := false;
   edit2.Visible := false;
@@ -93,13 +93,19 @@ dm.ADOQuery1.Close;
 dm.ADOQuery1.SQL.Clear;
 dm.ADOQuery1.SQL.Text := 'select*from obat';
 dm.ADOQuery1.Open;
+  dm.adosup.Open; // Membuka query
+  dm.adosup.First; // Pindah ke record pertama
+
+  while not dm.adosup.Eof do
+  begin
+    edit1.Items.Add(dm.adosup.FieldByName('supplier').AsString);
+    dm.adosup.Next;
+  end;
 end;
 
 procedure Tfpembelian.FormShow(Sender: TObject);
 begin
 edit7.Clear;
-
-edit1.Clear;
 edit2.Clear;
 edit1.Visible := false;
 edit2.Visible := false;
@@ -133,8 +139,6 @@ stok1 := dm.ADOQuery1['stok'];
 bitbtn1.Enabled := true;
 bitbtn1.Caption := '&Tambah Stok';
 bitbtn3.Caption := '&Batal';
-
-edit1.Clear;
 edit2.Clear;
 edit1.Visible := true;
 edit2.Visible := true;
@@ -175,11 +179,11 @@ dm.ADOQuery1.Close;
 dm.ADOQuery1.SQL.Clear;
 dm.ADOQuery1.SQL.Text := 'select*from pembelian';
 dm.ADOQuery1.Open;
-if (edit1.Text = '') or (edit2.Text = '0') then
+if (edit1.Text = 'pilih supplier') or (edit2.Text = '0') then
 application.MessageBox('Masih ada data yang belum terisi','Informasi!',mb_ok or mb_iconinformation) else
  begin
   dm.ADOQuery1.Append;
-  dm.ADOQuery1['nama_supplier'] := edit1.Text;
+  dm.ADOQuery1['supplier'] := edit1.Text;
   dm.ADOQuery1['kode_obat'] := kodeobat;
   dm.ADOQuery1['jumlah'] := edit2.Text;
   dm.ADOQuery1['tagihan'] := floattostr(strtofloat(edit2.Text)*harga_beli);
@@ -199,7 +203,6 @@ application.MessageBox('Masih ada data yang belum terisi','Informasi!',mb_ok or 
   bitbtn3.Caption := '&Keluar';
   bitbtn1.Enabled := false;
   bitbtn3.Enabled := true;
-  edit1.Clear;
   edit2.Clear;
   edit1.Visible := false;
   edit2.Visible := false;

@@ -77,6 +77,8 @@ type
     XPManifest1: TXPManifest;
     Timer1: TTimer;
     Image7: TImage;
+    ComboBox3: TComboBox;
+    Label13: TLabel;
     procedure sql;
     procedure omset;
     procedure DataObat1Click(Sender: TObject);
@@ -210,6 +212,14 @@ combobox2.ItemIndex:=0;
 tgl2.Date:=EndOfTheMonth(now);
 tgl1.Date:=StartOfTheMonth(now);
 label6.Caption := datetostr(tgl.Date);
+  combobox3.Items.Clear;
+  dm.adosup.Open; // Membuka query
+  dm.adosup.First; // Pindah ke record pertama
+  while not dm.adosup.Eof do
+  begin
+    combobox3.Items.Add(dm.adosup.FieldByName('supplier').AsString);
+    dm.adosup.Next;
+  end;
 end;
 
 procedure Tfmenu.Pengaturan1Click(Sender: TObject);
@@ -223,6 +233,9 @@ edit1.Text := dm.ADOQuery1['nama_apotek'];
 edit2.Text := dm.ADOQuery1['alamat'];
 edit3.Text := dm.ADOQuery1['no'];
 edit4.Text := dm.ADOQuery1['password'];
+groupbox3.Visible := false;
+groupbox1.Visible := false;
+groupbox2.Visible := false;
 end;
 
 procedure Tfmenu.Button2Click(Sender: TObject);
@@ -250,6 +263,9 @@ end;
 procedure Tfmenu.DataObat2Click(Sender: TObject);
 begin
 groupbox1.Visible := true;
+groupbox3.Visible := false;
+groupbox2.Visible := false;
+gkonfigurasi.Visible := false;
 combobox1.Text := 'Ada';
 end;
 
@@ -304,7 +320,9 @@ DTAkhir.Date:= EndOfTheMonth(DTAwal.Date);
 end;
 
 procedure Tfmenu.Button5Click(Sender: TObject);
+var supplier : string;
 begin
+supplier := ComboBox3.Text;
 if CBFilter.ItemIndex=0 then
   Begin
     Sintak2:= 'select*from pembelian where '+
@@ -312,7 +330,10 @@ if CBFilter.ItemIndex=0 then
      sql;
     if not dm.ADOQuery1.Eof then
       begin
-        Sintak:= 'select * from pembelian,obat where pembelian.kode_obat=obat.kode_obat and tanggal>=#'+FormatDateTime('yyyy/MM/dd',DTAwal.Date)+'# and tanggal<=#'+FormatDateTime('yyyy/MM/dd',DTAkhir.Date)+'# order by tanggal';
+        if supplier='Semua' then
+          Sintak:= 'select * from pembelian,obat where pembelian.kode_obat=obat.kode_obat and tanggal>=#'+FormatDateTime('yyyy/MM/dd',DTAwal.Date)+'# and tanggal<=#'+FormatDateTime('yyyy/MM/dd',DTAkhir.Date)+'# order by tanggal'
+        else
+          Sintak:= 'select * from pembelian,obat where supplier = '+quotedstr(supplier)+' and pembelian.kode_obat=obat.kode_obat and tanggal>=#'+FormatDateTime('yyyy/MM/dd',DTAwal.Date)+'# and tanggal<=#'+FormatDateTime('yyyy/MM/dd',DTAkhir.Date)+'# order by tanggal';
         Sintak2:= 'select sum(tagihan) as total from pembelian where tanggal>=#'+FormatDateTime('yyyy/MM/dd',DTAwal.Date)+'# and tanggal<=#'+FormatDateTime('yyyy/MM/dd',DTAkhir.Date)+'# ';
         sql;
         flaporan.qrtotal.Caption := formatcurr('#,###',dm.ADOQuery1['total']);
@@ -331,7 +352,11 @@ if CBFilter.ItemIndex=1 then
       sql;
     if not dm.ADOQuery1.Eof then
       begin
+        if supplier='Semua' then
         Sintak:= 'select * from pembelian,obat where pembelian.kode_obat=obat.kode_obat and'+
+          ' month(tanggal)='+FormatDateTime('MM',DTAwal.Date)+' and year(tanggal)='+FormatDateTime('yyyy',DTAwal.Date)+' order by tanggal'
+          else
+        Sintak:= 'select * from pembelian,obat where supplier = '+quotedstr(supplier)+' and pembelian.kode_obat=obat.kode_obat and'+
           ' month(tanggal)='+FormatDateTime('MM',DTAwal.Date)+' and year(tanggal)='+FormatDateTime('yyyy',DTAwal.Date)+' order by tanggal';
         Sintak2:= 'select sum(tagihan) as total from pembelian where '+
           ' month(tanggal)='+FormatDateTime('MM',DTAwal.Date)+' and year(tanggal)='+FormatDateTime('yyyy',DTAwal.Date)+'';
@@ -351,8 +376,13 @@ if CBFilter.ItemIndex=2 then
     sql;
     if not dm.ADOQuery1.Eof then
       begin
+      if supplier='Semua' then
         Sintak:= 'select * from pembelian,obat where pembelian.kode_obat=obat.kode_obat'+
+        ' and year(tanggal)='+FormatDateTime('yyyy',DTAwal.Date)+' order by tanggal'
+        else
+        Sintak:= 'select * from pembelian,obat where supplier = '+quotedstr(supplier)+' and pembelian.kode_obat=obat.kode_obat'+
         ' and year(tanggal)='+FormatDateTime('yyyy',DTAwal.Date)+' order by tanggal';
+
         Sintak2:= 'select sum(tagihan) as total from pembelian where '+
         ' year(tanggal)='+FormatDateTime('yyyy',DTAwal.Date)+' ';
         sql;
@@ -370,11 +400,17 @@ end;
 procedure Tfmenu.Pembelian2Click(Sender: TObject);
 begin
 groupbox2.Visible := true;
+groupbox3.Visible := false;
+groupbox1.Visible := false;
+gkonfigurasi.Visible := false;
 end;
 
 procedure Tfmenu.Penjualan2Click(Sender: TObject);
 begin
 groupbox3.Visible := true;
+groupbox1.Visible := false;
+groupbox2.Visible := false;
+gkonfigurasi.Visible := false;
 end;
 
 procedure Tfmenu.ComboBox2Change(Sender: TObject);

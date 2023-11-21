@@ -16,10 +16,10 @@ uses
 begin
   Application.Initialize;
   Application.Title := 'Aplikasi Kasir Apotek';
-  Application.CreateForm(Tfpembelian, fpembelian);
-  Application.CreateForm(Tfmenu, fmenu);
-  Application.CreateForm(Tfsupplier, fsupplier);
   Application.CreateForm(Tflogin, flogin);
+  Application.CreateForm(Tfmenu, fmenu);
+  Application.CreateForm(Tfpembelian, fpembelian);
+  Application.CreateForm(Tfsupplier, fsupplier);
   Application.CreateForm(Tfpenjualan, fpenjualan);
   Application.CreateForm(Tfobat, fobat);
   Application.CreateForm(Tdm, dm);

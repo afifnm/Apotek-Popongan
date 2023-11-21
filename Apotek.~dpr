@@ -16,13 +16,13 @@ uses
 begin
   Application.Initialize;
   Application.Title := 'Aplikasi Kasir Apotek';
-  Application.CreateForm(Tflogin, flogin);
-  Application.CreateForm(Tfmenu, fmenu);
-  Application.CreateForm(Tfpenjualan, fpenjualan);
   Application.CreateForm(Tfpembelian, fpembelian);
+  Application.CreateForm(Tfmenu, fmenu);
+  Application.CreateForm(Tfsupplier, fsupplier);
+  Application.CreateForm(Tflogin, flogin);
+  Application.CreateForm(Tfpenjualan, fpenjualan);
   Application.CreateForm(Tfobat, fobat);
   Application.CreateForm(Tdm, dm);
   Application.CreateForm(Tflaporan, flaporan);
-  Application.CreateForm(Tfsupplier, fsupplier);
   Application.Run;
 end.

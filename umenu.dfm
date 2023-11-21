@@ -3723,7 +3723,7 @@ object fmenu: Tfmenu
     OnClick = Image7Click
   end
   object gkonfigurasi: TGroupBox
-    Left = 312
+    Left = 264
     Top = 0
     Width = 417
     Height = 209
@@ -4369,8 +4369,8 @@ object fmenu: Tfmenu
     end
   end
   object GroupBox1: TGroupBox
-    Left = 312
-    Top = 0
+    Left = 208
+    Top = 8
     Width = 417
     Height = 129
     Caption = 'Laporan Data Obat'
@@ -4974,10 +4974,10 @@ object fmenu: Tfmenu
     end
   end
   object GroupBox2: TGroupBox
-    Left = 312
-    Top = 0
+    Left = 208
+    Top = 16
     Width = 417
-    Height = 121
+    Height = 177
     Caption = 'Laporan Pembelian Stok Obat'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
@@ -4990,7 +4990,7 @@ object fmenu: Tfmenu
       Left = 2
       Top = 18
       Width = 413
-      Height = 101
+      Height = 157
       Align = alClient
       Picture.Data = {
         0A544A504547496D616765CF440000FFD8FFE10FF64578696600004D4D002A00
@@ -5585,8 +5585,21 @@ object fmenu: Tfmenu
       Font.Style = []
       ParentFont = False
     end
+    object Label13: TLabel
+      Left = 8
+      Top = 80
+      Width = 47
+      Height = 16
+      Caption = 'Supplier'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
+    end
     object CBFilter: TComboBox
-      Left = 56
+      Left = 64
       Top = 16
       Width = 137
       Height = 24
@@ -5600,7 +5613,7 @@ object fmenu: Tfmenu
         'Tahun')
     end
     object DTAwal: TDateTimePicker
-      Left = 56
+      Left = 64
       Top = 48
       Width = 137
       Height = 24
@@ -5611,7 +5624,7 @@ object fmenu: Tfmenu
       OnChange = DTAwalChange
     end
     object DTAkhir: TDateTimePicker
-      Left = 224
+      Left = 232
       Top = 48
       Width = 137
       Height = 24
@@ -5621,8 +5634,8 @@ object fmenu: Tfmenu
       TabOrder = 2
     end
     object Button5: TButton
-      Left = 264
-      Top = 84
+      Left = 272
+      Top = 116
       Width = 91
       Height = 29
       Caption = 'LIHAT'
@@ -5630,20 +5643,29 @@ object fmenu: Tfmenu
       OnClick = Button5Click
     end
     object Button6: TButton
-      Left = 176
-      Top = 84
+      Left = 184
+      Top = 116
       Width = 83
       Height = 29
       Caption = 'TUTUP'
       TabOrder = 4
       OnClick = Button6Click
     end
+    object ComboBox3: TComboBox
+      Left = 64
+      Top = 80
+      Width = 137
+      Height = 24
+      ItemHeight = 16
+      TabOrder = 5
+      Text = 'Semua'
+    end
   end
   object GroupBox3: TGroupBox
-    Left = 312
-    Top = 0
+    Left = 208
+    Top = 8
     Width = 417
-    Height = 121
+    Height = 129
     Caption = 'Laporan Pembelian Stok Obat'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
@@ -5656,7 +5678,7 @@ object fmenu: Tfmenu
       Left = 2
       Top = 18
       Width = 413
-      Height = 101
+      Height = 109
       Align = alClient
       Picture.Data = {
         0A544A504547496D616765CF440000FFD8FFE10FF64578696600004D4D002A00
@@ -6287,7 +6309,7 @@ object fmenu: Tfmenu
       TabOrder = 2
     end
     object Button7: TButton
-      Left = 264
+      Left = 272
       Top = 84
       Width = 91
       Height = 29
@@ -6296,7 +6318,7 @@ object fmenu: Tfmenu
       OnClick = Button7Click
     end
     object Button8: TButton
-      Left = 176
+      Left = 184
       Top = 84
       Width = 83
       Height = 29
@@ -6357,12 +6379,12 @@ object fmenu: Tfmenu
     end
   end
   object XPManifest1: TXPManifest
-    Left = 424
-    Top = 232
+    Left = 320
+    Top = 216
   end
   object Timer1: TTimer
     OnTimer = Timer1Timer
-    Left = 472
-    Top = 240
+    Left = 352
+    Top = 216
   end
 end

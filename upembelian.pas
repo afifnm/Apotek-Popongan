@@ -93,9 +93,9 @@ dm.ADOQuery1.Close;
 dm.ADOQuery1.SQL.Clear;
 dm.ADOQuery1.SQL.Text := 'select*from obat';
 dm.ADOQuery1.Open;
+  edit1.Items.Clear;
   dm.adosup.Open; // Membuka query
   dm.adosup.First; // Pindah ke record pertama
-
   while not dm.adosup.Eof do
   begin
     edit1.Items.Add(dm.adosup.FieldByName('supplier').AsString);

@@ -1226,7 +1226,7 @@ object flaporan: Tflaporan
       object QRDBText10: TQRDBText
         Left = 120
         Top = 4
-        Width = 85
+        Width = 46
         Height = 17
         Frame.Color = clBlack
         Frame.DrawTop = False
@@ -1237,14 +1237,14 @@ object flaporan: Tflaporan
           44.979166666666670000
           317.500000000000000000
           10.583333333333330000
-          224.895833333333300000)
+          121.708333333333300000)
         Alignment = taLeftJustify
         AlignToBand = False
         AutoSize = True
         AutoStretch = False
         Color = clWhite
         DataSet = dm.ADOQuery1
-        DataField = 'nama_supplier'
+        DataField = 'supplier'
         Transparent = False
         WordWrap = True
         FontSize = 10
